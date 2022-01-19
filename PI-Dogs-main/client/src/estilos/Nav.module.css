@@ -1,0 +1,37 @@
+
+.fondo{
+    top: 0;
+    background: #00416A;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    align-items: center;
+    height: 100px;
+    position: relative;
+    text-align: center;
+    justify-content: space-between;
+    /* padding-left: 25px; */
+    /* padding-right: 30px; */
+
+}
+
+.link{
+    display: flex;
+    width: 20%;
+    margin-right: 35px;
+    justify-content: space-around;
+  
+   
+}
+button{
+    font-size: 25px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color:rgba(0, 0, 255, 0.13) ;
+    color:#3a9bdb 
+
+
+}
+h1{
+    margin-left: 35px;
+}

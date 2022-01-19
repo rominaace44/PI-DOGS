@@ -1,0 +1,20 @@
+.boton p{
+    font-size: 25px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.349);
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 0;
+    margin-left: 15px;
+
+}
+.boton button{
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 50px;
+}
+.boton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

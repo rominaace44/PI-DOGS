@@ -1,0 +1,53 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #24C6DC;
+    background: -webkit-linear-gradient(to left, #514A9D, #24C6DC);
+    background: linear-gradient(to left, #514A9D, #24C6DC);
+    width: 100%;
+    height: 100%;
+    
+}
+.filtros{
+display:flex ;
+flex-direction: row;
+}
+.cards{
+    
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    gap: 20px;
+
+    /* height: 80%; */
+}
+.cargando{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;
+    justify-content: center;
+    margin: auto;
+    /* margin-top: 150px; */
+   
+}
+.cargando h1{
+    font-size: 50px;
+    color: black;
+}
+.spinner{
+    border: 4px solid  black;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border-left-color: white;
+    animation: spin 1s ease infinite;
+}
+@keyframes spin{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

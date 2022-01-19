@@ -1,0 +1,18 @@
+@import './normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Patrick+Hand&display=swap');
+
+:root{
+font-family: 'Patrick Hand', cursive; 
+text-align: center;
+margin:0;
+padding: 0;
+box-sizing: border-box;
+background: #00416A;  /* fallback for old browsers */
+/* background: -webkit-linear-gradient(to bottom, #E4E5E6, #00416A);  Chrome 10-25, Safari 5.1-6 */
+/* background: linear-gradient(to bottom, #E4E5E6, #00416A); */
+
+}
+h1{
+    font-size: 2rem;
+    color:#3a9bdb 
+}
