@@ -1,16 +1,19 @@
 
 import {GET_DOGS, GET_DOG,LOADING,CLEAN, GET_TEMPERAMENTOS,
        CREATE_DOG, SEARCH_DOG, FILTRAR_POR_TEMPERAMENTO, FILTRAR_POR_CREADOS,
-       ORDENAR, ORDENAR_PESO} from '../actions/index'
+       ORDENAR, ORDENAR_PESO, DELETE_DOG} from '../actions/index'
 
 
 const initialStore={
 dogs:[],
 todoslosDogs:[],
+dogcreados:[],
 temperamentos:[],
 detalleDog: [], 
 loading:false,
-creado:""
+creado:"",
+eliminado:"", 
+encontrado:true
 }
 
 
@@ -19,10 +22,16 @@ function rootReducer(state=initialStore, action){
 
     switch(action.type){
         case GET_DOGS:
+
+            let creadoss= action.payload.filter(d=> d.createdInbs)
+
+
+
             return{
                 ...state,
                 dogs: action.payload,
                 todoslosDogs:action.payload,
+                dogcreados:creadoss,
                 loading:false
             }
         case GET_DOG:
@@ -51,9 +60,11 @@ function rootReducer(state=initialStore, action){
              creado: action.payload}
 
          case SEARCH_DOG:
+            
                return{
               ...state, 
-              dogs: action.payload
+               dogs: action.payload.length? action.payload : state.todoslosDogs,
+              encontrado: action.payload.length <= 0 ? false : true
             
             }
 
@@ -71,8 +82,8 @@ function rootReducer(state=initialStore, action){
                    
                 }
         case FILTRAR_POR_CREADOS:
-                const Dogs=state.todoslosDogs;
-                const Creados= action.payload === 'creados'? Dogs.filter((p)=> p.createdInbs) : Dogs.filter((p)=> !p.createdInbs) 
+                const Dogs=state.dogcreados;
+               const Creados= action.payload === 'creados'? Dogs: state.todoslosDogs.filter((p)=> !p.createdInbs) 
     
                  return{
                 ...state, 
@@ -136,6 +147,15 @@ function rootReducer(state=initialStore, action){
                 ...state,
                 dogs:action.payload
 
+            }
+        case DELETE_DOG:
+           
+            return{
+                ...state,
+                dogs:action.payload.res,
+                dogcreados:action.payload.res,
+                eliminado:action.payload.cantidad
+                
             }
     
     default: return state;

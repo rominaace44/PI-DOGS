@@ -50,20 +50,38 @@ let err={}
 
 
      }
-     if(Number(values.años) > 40){
-         err.años="el valor debe ser menor a 40..."
+     if(Number(values.años) > 40 || Number(values.años) <=0 ||!Number(values.años) ){
+         err.años="el valor debe ser menor a 40 y mayor a 0..."
       
 
      }
      if(!values.altura.includes('-')){
-         err.altura="el valor ingresado debe ser: numero-numero"
+         err.altura="el valor ingresado debe ser: minimo-maximo"
  
-     }
+        }
+    if(values.altura.includes('-')){
+       let a= values.altura.split('-')
+       if(a[0]> a[1]){
+           err.altura="el valor minimo debe ser menor al maximo"
+       }
+       
+
+    }
+    
      if(!values.peso.includes('-')){
-        err.peso="el valor ingresado debe ser: numero-numero"
+        err.peso="el valor ingresado debe ser: minimo-maximo"
+
      
 
     }
+    if(values.peso.includes('-')){
+        let a= values.peso.split('-')
+        if(a[0] > a[1]){
+            err.peso="el valor minimo debe ser menor al maximo"
+        }
+        
+ 
+     }
     
      return err
 
@@ -102,6 +120,11 @@ let err={}
         if(!values.name || !values.años ||!values.altura|| !values.peso||!values.temperamento.length){
             alert("debe llenar todos los campos")
 
+        }
+        else if(error.name || error.años ||error.altura|| error.peso){
+            alert("debe corregir los datos ingresados")
+
+
         }else{
 
             dispatch(createDog(values));
@@ -117,7 +140,7 @@ let err={}
         }
 
        
-        console.log(values)
+        console.log(error)
 
     }
 

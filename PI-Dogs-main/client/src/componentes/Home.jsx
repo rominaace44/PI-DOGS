@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import{connect} from 'react-redux'
 import {getDogs, getTemperamentos} from '../actions/index'//traigo la action que busca los pokes
 import h from '../estilos/Home.module.css'
@@ -8,40 +8,41 @@ import Filtros from './Filtros'
 import Paginado from './Paginado'
 import Search from './Search'
 
-function Home({dogs, getDogs, getTemperamentos, cargando}) {
-    let history = useNavigate();
+function Home({dogs, getDogs, getTemperamentos, cargando, encontrado}) {
+    //let history = useNavigate();
     const [pagina, setPagina] = useState(1)
     const [cantidad] = useState(8)
     const ultimodog = pagina* cantidad
     const primerdog = ultimodog-cantidad
     const personajesPaginas = dogs.slice(primerdog, ultimodog)
-    let params = new URLSearchParams(window.location.search) // id=123
-    let page = params.get('page') // 123
+    //let params = new URLSearchParams(window.location.search) // id=123
+    //let page = params.get('page') // 123
     //let temperamento = params.get('temperamento') // 123
     
 
 
     useEffect(() => {
-        if(page) {
-            setPagina(page)
-        } else {
-            setPagina(1)
-        }
+        // if(page) {
+        //     setPagina(page)
+        // } else {
+        //     setPagina(1)
+        // }
         getDogs()
         getTemperamentos()
-    }, [page, getDogs, getTemperamentos])
+    }, [ getDogs, getTemperamentos])
 
    
 
     return(
         <div className={h.contenedor}>
             <div className={h.filtros}>
-            <Filtros/>
-            <Search/>
+                <Filtros setPagina={setPagina}  />
+                <Search/>
             </div>
            
             <Paginado
                 cantidad={cantidad}
+                setPagina={setPagina}
             />
 
 
@@ -59,16 +60,20 @@ function Home({dogs, getDogs, getTemperamentos, cargando}) {
                         key={p.id}
                         name={p.name}
                         temperamento={p.temperamento? p.temperamento: p.Temperamentos }
-                        imagen={p.imagen}
+                        imagen={p.imagen? p.imagen : 'https://images.vexels.com/media/users/3/144288/isolated/lists/aa292f041ff432bf0368a8f37454e2f2-alerta-perro-silueta-posando.png' }
                         id={p.id}
                         peso={p.peso}
+                        creado={p.createdInbs? p.createdInbs : null}
                     />
                 })
             }
+            <div>{encontrado? null: alert("no se encontro la raza ingresada")}</div>
             </div>
            
             <Paginado
                 cantidad={cantidad}
+                setPagina={setPagina}
+
             />
         </div>
     )
@@ -78,7 +83,9 @@ export const mapStateToProps=(state)=>{
     return{
         dogs:state.dogs,
         tipos: state.temperamentos,
-        cargando: state.loading
+        cargando: state.loading, 
+        eliminado:state.eliminado, 
+        encontrado:state.encontrado
     }
 }
 

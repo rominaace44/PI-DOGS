@@ -1,4 +1,4 @@
-import axios from 'axios'
+ import axios from 'axios'
 
 export const GET_DOGS='GET_DOGS'
 export const  GET_DOG='GET_DOG'
@@ -12,7 +12,7 @@ export const FILTRAR_POR_TEMPERAMENTO='FILTRAR_POR_TEMPERAMENTO'
 export const FILTRAR_POR_CREADOS='FILTRAR_POR_CREADOS'
 export const ORDENAR='ORDENAR'
 export const ORDENAR_PESO='ORDENAR_PESO'
-
+export const DELETE_DOG='DELETE_DOG'
 
 
 export  function getDogs(){
@@ -105,7 +105,7 @@ export function search(name){
         try{
        
             let dog = await axios.get(`http://localhost:3001/dog?name=${name}`)  
-            //console.log(dog)
+            console.log(dog.data)
 
             return dispatch({
                 type: SEARCH_DOG,
@@ -168,4 +168,24 @@ export function orderByPeso(value){
         type: ORDENAR_PESO,
         payload:value
     }
+}
+
+export function deletedog(value){
+    return async (dispatch)=>{
+        try{
+          let eliminado= await axios.delete(`http://localhost:3001/dog?id=${value}`)
+          console.log(eliminado.data.cantidad)
+
+          return dispatch({
+              type: DELETE_DOG,
+              payload:eliminado.data,
+              
+          })
+
+        }catch(err){
+            console.error(err)
+        }
+
+    }
+  
 }

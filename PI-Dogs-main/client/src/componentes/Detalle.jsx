@@ -40,7 +40,7 @@ let a =dog.temperamento? dog.temperamento :dog.Temperamentos
                 </div>  :
                 <div className={d.contenedor}>
                     <div className={d.imagen}>
-                        <img src={dog.imagen} alt="imagen "></img>
+                        <img src={dog.imagen? dog.imagen :'https://images.vexels.com/media/users/3/144288/isolated/lists/aa292f041ff432bf0368a8f37454e2f2-alerta-perro-silueta-posando.png'} alt="imagen "></img>
                     </div>
                     <div className={d.text} >
                     <h1>NOMBRE: { dog.name}</h1>

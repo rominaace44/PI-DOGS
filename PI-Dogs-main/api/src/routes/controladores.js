@@ -117,7 +117,27 @@ module.exports={
    }, 
 
  
+    deletedog: async (id)=>{
 
+        let eliminados={}
+        eliminados.cantidad= await Dog.destroy({
+            where:{
+                id:id
+            }
+        });
+        eliminados.res= await Dog.findAll({        //TRAE DE LA BASE DE DATOS LOS POKES CREADOS 
+            include:{
+                model: Temperamento, 
+                attributes: ['name'],
+                through:{
+                    attributes:[]
+                }
+                
+            }
+    
+        })
+        return eliminados;
+    }
 }
 
 // 

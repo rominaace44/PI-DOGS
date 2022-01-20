@@ -1,5 +1,5 @@
 const router= require('express').Router();
-const{ getDogs, createDog, getTemperament , dogsSort}=require('./controladores')
+const{ getDogs, createDog, getTemperament , deletedog}=require('./controladores')
 
 // //import * as util from 'util'
 // import {inspect} from 'util'
@@ -21,10 +21,10 @@ router.get('/',async (req, res)=>{
         if(name){
             const dogName=await dogsApi.filter(t=> t.name.toLowerCase().includes(name))
            
-            if(dogName.length){
-                res.status(200).json(dogName)
-            }else{
+            if(dogName.length<0){
                 res.status(404).json({mensaje: "no se encontro la raza que buscas"});
+            }else{
+                res.status(200).json(dogName)
 
             }
         }
@@ -183,5 +183,17 @@ router.post('/', (req, res)=>{
 
 
 });
+router.delete('/', async (req, res)=>{
+    const {id} = req.query
 
+    try{
+
+       let respuest= await deletedog(id)
+
+       res.json(respuest)
+
+    }catch(err){
+        console.log(err)
+    }
+})
 module.exports =router

@@ -6,7 +6,7 @@ import {filtrado, filtradoPorCreados, orderBy, orderByPeso} from "../actions";
 
 
 
-export default function Filtros(){
+export default function Filtros({setPagina}){
   
 
     const dispatch= useDispatch();
@@ -14,10 +14,13 @@ export default function Filtros(){
 
     function handleFiltertipos(e){
          dispatch(filtrado(e.target.value))
+        setPagina(1)
+
 
     }
     function handleFilterCreados(e){
         dispatch(filtradoPorCreados(e.target.value))
+        setPagina(1)
     
     }
     
@@ -31,9 +34,7 @@ export default function Filtros(){
     }
     return (
             <div className={f.contenedor}>
-                <div>
-                    
-                </div>
+                
                 <h2>ordenar por:</h2>
                <div>
 
