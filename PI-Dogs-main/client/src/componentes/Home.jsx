@@ -64,6 +64,7 @@ function Home({dogs, getDogs, getTemperamentos, cargando, encontrado}) {
                         id={p.id}
                         peso={p.peso}
                         creado={p.createdInbs? p.createdInbs : null}
+                        setPagina={setPagina}
                     />
                 })
             }

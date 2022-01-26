@@ -174,7 +174,7 @@ export function deletedog(value){
     return async (dispatch)=>{
         try{
           let eliminado= await axios.delete(`http://localhost:3001/dog?id=${value}`)
-          console.log(eliminado.data.cantidad)
+          //console.log(eliminado.data.cantidad)
 
           return dispatch({
               type: DELETE_DOG,

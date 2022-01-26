@@ -8,13 +8,14 @@ import {deletedog} from '../actions'
 
 
 
-export default function Card({name, temperamento, imagen, id, peso, creado}){
+export default function Card({name, temperamento, imagen, id, peso, creado, setPagina}){
 
   const dispatch= useDispatch()
 
   function borrar({target:{value}}){
     dispatch(deletedog(value))
     alert("perro aliminado")
+    setPagina(1)
 
   
   }

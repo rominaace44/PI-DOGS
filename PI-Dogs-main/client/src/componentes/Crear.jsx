@@ -76,7 +76,7 @@ let err={}
     }
     if(values.peso.includes('-')){
         let a= values.peso.split('-')
-        if(a[0] > a[1]){
+        if(Number(a[0]) >= Number( a[1])){
             err.peso="el valor minimo debe ser menor al maximo"
         }
         

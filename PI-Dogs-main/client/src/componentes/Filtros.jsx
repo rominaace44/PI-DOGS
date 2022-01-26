@@ -31,6 +31,7 @@ export default function Filtros({setPagina}){
     function orderPeso({target:{ value}}){
        
         dispatch(orderByPeso( value))
+        setPagina(1)
     }
     return (
             <div className={f.contenedor}>
@@ -40,8 +41,8 @@ export default function Filtros({setPagina}){
 
                     <select name="nombre" onChange={order}>
                         <option value="">NOMBRE</option>
-                        <option value="asc">ASCENDENTE</option>
-                        <option value="des">DESCENDENTE</option>
+                        <option value="asc">A-Z</option>
+                        <option value="des">Z-A</option>
                     </select> 
                </div>
                 <div>

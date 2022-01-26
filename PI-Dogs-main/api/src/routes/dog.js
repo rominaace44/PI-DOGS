@@ -15,6 +15,7 @@ router.get('/',async (req, res)=>{
 
 
        let  dogsApi= await getDogs();
+       //console.log(dogsApi)
        getTemperament(dogsApi);
       
 
@@ -78,19 +79,19 @@ router.get('/',async (req, res)=>{
                 
                     let final= tipo==="asc"?
                     dogsApi.sort((a,b)=>{
-                        if(a.name>b.name){
+                        if(a.name.toLowerCase() > b.name.toLowerCase()){
                             return 1
                         }
-                        if(b.name>a.name){
+                        if(b.name.toLowerCase() > a.name.toLowerCase()){
                             return -1
                         }
                         return 0
                     }):
                     dogsApi.sort((a,b)=>{
-                        if(a.name> b.name){
+                        if(a.name.toLowerCase()> b.name.toLowerCase()){
                             return -1
                         }
-                        if(b.name>a.name){
+                        if(b.name.toLowerCase() > a.name.toLowerCase()){
                             return 1
                         }
                         return 0

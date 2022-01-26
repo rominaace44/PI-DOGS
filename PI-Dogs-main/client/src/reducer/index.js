@@ -152,7 +152,7 @@ function rootReducer(state=initialStore, action){
            
             return{
                 ...state,
-                dogs:action.payload.res,
+                dogs:state.todoslosDogs,
                 dogcreados:action.payload.res,
                 eliminado:action.payload.cantidad
                 
